@@ -20,6 +20,8 @@ la variable "archivo_excel" con la ruta donde se encuentra tu base de datos para
 Adicionalmente el codigo esta usando la biblioteca matplotlib para mostrar las graficas conseguidas como las siguientes:
 <img width="895" height="595" alt="image" src="https://github.com/user-attachments/assets/f3129ac0-881a-44b3-94e3-fc26a2c85ff5" />
 
+---
 
+Ademas estamos usando la biblioteca pandas y openpyxl para poder analizar la informacion probeniente de la base de dato de excel
 
   

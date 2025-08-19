@@ -12,4 +12,4 @@ las notaciones usadas seran:
 ## [1.0.0] - 2025-08-18
 
 ### Added
-  - Versión inicial del proyecto con funcionalidades básicas.
+  - 1.0.0 Versión inicial del proyecto con funcionalidades básicas.

@@ -20,3 +20,5 @@ las notaciones usadas seran:
   - 1.0.1 Etapa 2 subida
 ### Added
   - 1.0.1 Se complemento la etapa dos para que funcionara con el algoritmo tipo voraz, este presenta todavia partes de mejora
+### Added
+  - 1.0.1 Se cambio el Read.md y el Install.md para que ahora tambien explique como se debe instalar las cosas para que la segunda etapa funcione correctamente 

@@ -13,3 +13,10 @@ las notaciones usadas seran:
 
 ### Added
   - 1.0.0 Versión inicial del proyecto con funcionalidades básicas.
+
+## [1.0.1] - 2025-10-01
+
+### Added
+  - 1.0.1 Etapa 2 subida
+### Added
+  - 1.0.1 Se complemento la etapa dos para que funcionara con el algoritmo tipo voraz, este presenta todavia partes de mejora

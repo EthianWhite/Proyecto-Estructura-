@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -13,7 +11,6 @@ import matplotlib.pyplot as plt
 DEFAULT_EXCEL = "usage_real.xlsx"  # expected columns: App, RealMinutes (weekly total)
 
 def read_real_usage(path: str) -> pd.DataFrame:
-    # Read first sheet by default
     df = pd.read_excel(path)
     cols = {str(c).strip().lower(): c for c in df.columns}
     if "app" not in cols or ("realminutes" not in cols and "real_minutes" not in cols):
@@ -24,12 +21,12 @@ def read_real_usage(path: str) -> pd.DataFrame:
     out["App"] = out["App"].astype(str).str.strip()
     out["RealMinutes"] = pd.to_numeric(out["RealMinutes"], errors="coerce").fillna(0).clip(lower=0)
 
-    # Optional Category support
+
     is_prod = pd.Series(False, index=out.index)
     if "category" in cols:
         cat_series = df[cols["category"]].astype(str).str.strip().str.lower()
         is_prod = cat_series.isin(["productivity","productivo","productividad","work","trabajo","laboral","office"])
-        # Align length if user provided category for fewer rows
+     
         if len(is_prod) != len(out):
             is_prod = is_prod.reindex(out.index, fill_value=False)
     out["IsProductivity"] = is_prod.values
@@ -87,18 +84,18 @@ class ScrollableFrame(ttk.Frame):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        # Mouse wheel support
+       #mejora para visualizacion 
         self.inner.bind_all("<MouseWheel>", self._on_mousewheel)       # Windows
         self.inner.bind_all("<Button-4>", self._on_mousewheel_linux)   # Linux up
         self.inner.bind_all("<Button-5>", self._on_mousewheel_linux)   # Linux down
 
     def _on_frame_configure(self, event):
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
-        # Resize inner frame to canvas width
+        
         self.canvas.itemconfig(self.window_id, width=self.canvas.winfo_width())
 
     def _on_mousewheel(self, event):
-        # For Windows, delta positive is up, negative is down
+        
         self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
     def _on_mousewheel_linux(self, event):
@@ -133,11 +130,11 @@ class App(tk.Tk):
         ttk.Entry(options, textvariable=self.block_budget_var, width=10).pack(side="left", padx=8)
         ttk.Checkbutton(options, text="No bloquear apps de productividad (★)", variable=self.no_block_productivity_var).pack(side="left", padx=12)
 
-        # Scrollable estimation area
+       
         self.form_wrapper = ScrollableFrame(self, height=380)
         self.form_wrapper.pack(fill="both", expand=True, padx=16, pady=(4, 8))
 
-        # Bottom buttons
+       
         btns = ttk.Frame(self)
         btns.pack(fill="x", padx=16, pady=8)
         ttk.Button(btns, text="Cargar apps (no muestra real) → Estimar", command=self.load_and_build_form).pack(side="left")
@@ -159,22 +156,22 @@ class App(tk.Tk):
             return
         self.df_real = df_real
 
-        # Clear inner frame
+       
         for w in self.form_wrapper.inner.winfo_children():
             w.destroy()
         self.estimate_vars.clear()
 
-        # Label
+        
         mark_prod = ("IsProductivity" in df_real.columns) and df_real["IsProductivity"].any()
         label_text = "1) Ingresa tu estimación (min/sem) por app (sin ver lo real)."
         if mark_prod: label_text += " Las de productividad se marcan con ★."
         ttk.Label(self.form_wrapper.inner, text=label_text).grid(row=0, column=0, columnspan=2, sticky="w", padx=4, pady=(0,6))
 
-        # Headers
+        
         ttk.Label(self.form_wrapper.inner, text="App", font=("Segoe UI", 10, "bold")).grid(row=1, column=0, sticky="w", padx=4, pady=2)
         ttk.Label(self.form_wrapper.inner, text="Estimado (min/sem)", font=("Segoe UI", 10, "bold")).grid(row=1, column=1, sticky="e", padx=4, pady=2)
 
-        # Rows
+      
         for i, row in enumerate(df_real.itertuples(index=False), start=2):
             app = row.App
             is_prod = bool(getattr(row, "IsProductivity", False))
@@ -198,7 +195,7 @@ class App(tk.Tk):
                 est = float(var.get())
             except ValueError:
                 est = 0.0
-            # Safely read IsProductivity from df_real if exists
+           
             is_prod = False
             if "IsProductivity" in self.df_real.columns:
                 try:

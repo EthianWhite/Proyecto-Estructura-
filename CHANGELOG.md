@@ -34,6 +34,6 @@ las notaciones usadas seran:
 
 ### Added
   - 1.3.2 - Mejora en la parte visual del Algoritmo
-  - 1.3.2 - Cambio en el Read.md para poder hacer uso correcto de este
+  - 1.3.2 - Cambio en el Install.md para poder hacer uso correcto de este
   - 1.3.2 - Se añadio documentacion extra usada para el desarrolo de esta
   - 1.3.2 - Todavia se necesitan hacer cambios en el input de informacion para facilitar el uso

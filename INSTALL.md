@@ -19,4 +19,5 @@ py -3 Etapa 2 del proyecto.py
 
 ---
 para instalar las simplemente copia esas lineas en tu consola
-adicionalmente ya no es necesario que vincules un archivo excel desde el codigo, ya se puede seleccionar desde la aplicacion cuando se inicia
+adicionalmente ya no es necesario que vincules un archivo excel desde el codigo, ya se puede seleccionar desde la aplicacion cuando se inicia,
+importante revisar debajo de los botones que si se haya seleccionado el excel que deberia ser
